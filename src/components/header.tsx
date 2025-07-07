@@ -9,11 +9,12 @@ import { useSelector } from "react-redux";
 import Logo from "../assets/logo.png";
 
 type HeaderProps = {
+  hideBrandLogo?: boolean
   title?: ReactNode
   subtitle?: ReactNode
 }
 
-export default function Header({ title, subtitle }: HeaderProps) {
+export default function Header({ hideBrandLogo, title, subtitle }: HeaderProps) {
   const itemsInCart = useSelector(
     (state: RootState) => state.shoppingCart.total
   );
@@ -25,13 +26,13 @@ export default function Header({ title, subtitle }: HeaderProps) {
     <nav className="header">
       <div className="header-container">
         <Link href="/" className="brand-item">
-          <Image
+          {!hideBrandLogo && <Image
             src={Logo}
             width={60}
             height={60}
             alt={`${appName} logo`}
             priority
-          />
+          />}
           {title && <div>
             <h1>{title}</h1>
             {subtitle && <p>{subtitle}</p>}

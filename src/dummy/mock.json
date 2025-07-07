@@ -1,0 +1,84 @@
+[
+    {
+      "product": {
+        "id":1,
+        "name": "Mezcal Artesanal Santa botella ®",
+        "variant": "Mezcal Espadín Santa Botella ®",
+        "presentation": "750ml",
+        "tasting_notes": {
+          "sight": "Cristalino",
+          "smell": "Herbales y cítricas",
+          "taste": "Ligeramente dulce, herbal y maguey cocido. Toques florales y de tierra mojada."
+        },
+        "includes_glass": false,
+        "price": 340.00,
+        "product_images": [
+          "https://mbdevelopbucket.s3.us-east-2.amazonaws.com/santa-botella-test/_DSC3054-Editar_2.jpg",
+          "https://mbdevelopbucket.s3.us-east-2.amazonaws.com/santa-botella-test/_DSC3131-Editar.jpg",
+          "https://mbdevelopbucket.s3.us-east-2.amazonaws.com/santa-botella-test/_DSC3149-Editar_2.jpg",
+          "https://mbdevelopbucket.s3.us-east-2.amazonaws.com/santa-botella-test/_DSC3956_2.jpg"
+        ]
+      }
+    },
+    {
+      "product": {
+        "id":2,
+        "name": "Mezcal Artesanal Luna Llena ®",
+        "variant": "Mezcal Espadín Luna Llena ®",
+        "presentation": "750ml",
+        "tasting_notes": {
+          "sight": "Transparente",
+          "smell": "Herbales y frescas",
+          "taste": "Dulce, maguey cocido, con toques de cítricos y tierra húmeda."
+        },
+        "includes_glass": false,
+        "price": 350.00,
+        "product_images": [
+          "https://picsum.photos/seed/luna/200/300",
+          "https://picsum.photos/seed/luna/200/300",
+          "https://picsum.photos/seed/luna/200/300"
+        ]
+      }
+    },
+    {
+      "product": {
+        "id":3,
+        "name": "Mezcal Artesanal Montaña ®",
+        "variant": "Mezcal Espadín Montaña ®",
+        "presentation": "750ml",
+        "tasting_notes": {
+          "sight": "Cristalino",
+          "smell": "Aromas ahumados y terrosos",
+          "taste": "Sabores ahumados con notas de hierbas y frutas maduras."
+        },
+        "includes_glass": false,
+        "price": 360.00,
+        "product_images": [
+          "https://picsum.photos/seed/montana/200/300",
+          "https://picsum.photos/seed/montana/200/300",
+          "https://picsum.photos/seed/montana/200/300"
+        ]
+      }
+    },
+    {
+      "product": {
+        "id":4,
+        "name": "Mezcal Artesanal Sol de Medianoche ®",
+        "variant": "Mezcal Espadín Sol de Medianoche ®",
+        "presentation": "750ml",
+        "tasting_notes": {
+          "sight": "Brillante",
+          "smell": "Cítricos y florales",
+          "taste": "Equilibrado entre lo dulce y lo terroso, con notas florales y herbales."
+        },
+        "includes_glass": false,
+        "price": 370.00,
+        "product_images": [
+          "https://picsum.photos/seed/sol/200/300",
+          "https://picsum.photos/seed/sol/200/300",
+          "https://picsum.photos/seed/sol/200/300"
+        ]
+      }
+    }
+  ]
+  

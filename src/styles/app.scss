@@ -1,0 +1,19 @@
+$theme-colors: (
+    "light":      #efebd6,
+    // "dark":       #37075f,
+    "dark":       #222,
+    "primary":    #5f3713,
+    "primary-light": #a36d5b,
+    "secondary":  #13705f,
+    "info":       #aecdea,
+    "success":    #00aa5e,
+    "warning":    #f5a623,
+    "danger":     #bd1410,
+);
+
+$enable-negative-margins: true;
+
+// $form-check-input-checked-bg-color: #929d04;
+// $form-check-input-checked-border-color: #929d04;
+
+@import '../../node_modules/bootstrap/scss/bootstrap';

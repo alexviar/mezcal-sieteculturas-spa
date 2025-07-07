@@ -1,0 +1,24 @@
+[
+    {
+      "product": {
+        "id":1,
+        "name": "Mezcal Artesanal Santa botella ®",
+        "variant": "Mezcal Espadín Santa Botella ®",
+        "presentation": "750ml",
+        "tasting_notes": {
+          "sight": "Notas de cata vista: Cristalino",
+          "smell": "Notas de cata olor: Herbales y cítricas",
+          "taste": "Notas de cata sabor: Ligeramente dulce, herbal y maguey cocido. Toques florales y de tierra mojada."
+        },
+        "includes_glass": false,
+        "price": 340.00,
+        "product_images": [
+          "https://mbdevelopbucket.s3.us-east-2.amazonaws.com/santa-botella-test/_DSC3054-Editar_2.jpg",
+          "https://mbdevelopbucket.s3.us-east-2.amazonaws.com/santa-botella-test/_DSC3131-Editar.jpg",
+          "https://mbdevelopbucket.s3.us-east-2.amazonaws.com/santa-botella-test/_DSC3149-Editar_2.jpg",
+          "https://mbdevelopbucket.s3.us-east-2.amazonaws.com/santa-botella-test/_DSC3956_2.jpg"
+        ]
+      }
+    }
+  ]
+  

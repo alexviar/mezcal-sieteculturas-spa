@@ -35,6 +35,10 @@ body {
   text-decoration: none;
 }
 
+.brand-item img {
+  object-fit: contain;
+}
+
 .brand-item h1 {
   font-size: 1.25rem;
   line-height: 1.75rem;

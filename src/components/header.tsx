@@ -23,7 +23,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
         <Link href="/" className="brand-item">
           <Image
             src={Logo}
-            width={90}
+            width={60}
             height={60}
             alt={`${appName} logo`}
             priority

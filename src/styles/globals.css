@@ -27,6 +27,27 @@ body {
   width: 100%;
 }
 
+.brand-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.brand-item h1 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  color: rgb(var(--bs-primary-rgb));
+  margin-bottom: 0;
+}
+
+.brand-item p {
+  color: var(--bs-gray-600);
+  margin-bottom: 0;
+}
+
 .action-container {
   position: relative;
   display: flex;

@@ -3,18 +3,24 @@ import { appName } from "@/configs/app";
 import { RootState } from "@/models/redux/store";
 import Image from "next/image";
 import Link from "next/link";
+import { ReactNode } from "react";
 import { Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Logo from "../assets/logo.png";
 
-export default function Header() {
+type HeaderProps = {
+  title?: ReactNode
+  subtitle?: ReactNode
+}
+
+export default function Header({ title, subtitle }: HeaderProps) {
   const itemsInCart = useSelector(
     (state: RootState) => state.shoppingCart.total
   );
   return (
     <nav className="header">
       <div className="header-container">
-        <Link href="/">
+        <Link href="/" className="brand-item">
           <Image
             src={Logo}
             width={90}
@@ -22,6 +28,10 @@ export default function Header() {
             alt={`${appName} logo`}
             priority
           />
+          {title && <div>
+            <h1>{title}</h1>
+            {subtitle && <p>{subtitle}</p>}
+          </div>}
         </Link>
         <div className="action-container">
           <Link href="/login" className="action-container-item login">

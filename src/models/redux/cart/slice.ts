@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { CartState, Product } from "@/models/entities";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface FormState {
   firstName: string;
@@ -127,6 +127,22 @@ const cartSlice = createSlice({
       state.grandTotal = subtotal + /* state.tax + */ state.deliverySum;
     },
 
+    updateQuantity: (state, action: PayloadAction<{ productId: number; quantity: number }>) => {
+      const { productId, quantity } = action.payload;
+      if (state.quantities[productId]) {
+        state.quantities[productId] = quantity;
+      }
+
+      const subtotal = state.items.reduce(
+        (sum, item) => sum + item.price * (state.quantities[item.id] || 1),
+        0
+      );
+      state.subtotal = subtotal;
+      /*  state.tax = subtotal * 0.19; */
+      state.deliverySum = sumShippingValues(state.items);
+      state.grandTotal = subtotal + /* state.tax + */ state.deliverySum;
+    },
+
     cleanCart: (state) => {
       state.items = [];
       state.quantities = {};
@@ -152,6 +168,7 @@ export const {
   removeItem,
   incrementQuantity,
   decrementQuantity,
+  updateQuantity,
   cleanCart,
   setForm,
   resetForm,

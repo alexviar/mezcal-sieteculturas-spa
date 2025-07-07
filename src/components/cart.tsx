@@ -2,9 +2,8 @@
 import { Trash } from "@/assets/icons";
 import { Product } from "@/models/entities";
 import {
-  decrementQuantity,
-  incrementQuantity,
   removeItem,
+  updateQuantity
 } from "@/models/redux/cart/slice";
 import { RootState } from "@/models/redux/store";
 import Image from "next/image";
@@ -13,6 +12,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { QuantityControls } from "./QuantityControl";
 
 export default function Cart() {
   const quantities = useSelector(
@@ -34,18 +34,6 @@ export default function Cart() {
       dispatch(removeItem(id));
     } else {
       console.error("ItemId must be provided");
-    }
-  };
-
-  const handleDecrementQuantity = (id: number | undefined) => {
-    if (id) {
-      dispatch(decrementQuantity(id));
-    }
-  };
-
-  const handleIncrementQuantity = (id: number | undefined) => {
-    if (id) {
-      dispatch(incrementQuantity(id));
     }
   };
 
@@ -83,65 +71,55 @@ export default function Cart() {
         <h2>Resumen de tu compra</h2>
         <span>({total}) items agregados</span>
 
-        {itemsInCart.length > 0 ? (
-          itemsInCart.map((item, index) => (
-            <div className="cart-item" key={index}>
-              <Image
-                src={item.images[0]}
-                alt={item.name}
-                width={40}
-                height={40}
-                priority
-              />
-              <div className="item-details">
-                <h2>{item.name}</h2>
-                <div>
-                  ${item.price * (quantities[item.id!] ?? 1)} -{" "}
-                  {item.shippingValue > 0 ? (
-                    <span className="stock-status in-stock">
-                      Envío ${item.shippingValue.toFixed(2)}
-                    </span>
-                  ) : (
-                    <span className="stock-status out-of-stock">
-                      Envío gratuito
-                    </span>
-                  )}
-                </div>
-                {item.stock && item.stock < 5 ? (
-                  <div className="stock-warning">¡Quedan pocas unidades!</div>
-                ) : null}
-                <div className="item-options">
-                  <div className="quantity-control">
-                    <button
-                      onClick={() =>
-                        item.id ? handleDecrementQuantity(item.id) : null
-                      }
-                      disabled={quantities[item.id!] === 1}
-                    >
-                      -
-                    </button>
-                    <span>{quantities[item.id!] || 1}</span>
-                    <button
-                      onClick={() =>
-                        item.id ? handleIncrementQuantity(item.id) : null
-                      }
-                    >
-                      +
-                    </button>
+        <div className="mt-2">
+          {itemsInCart.length > 0 ? (
+            itemsInCart.map((item, index) => (
+              <div className="cart-item" key={index}>
+                <Image
+                  src={item.images[0]}
+                  alt={item.name}
+                  width={40}
+                  height={40}
+                  priority
+                />
+                <div className="item-details">
+                  <h2>{item.name}</h2>
+                  <div>
+                    ${item.price * (quantities[item.id!] ?? 1)} -{" "}
+                    {item.shippingValue > 0 ? (
+                      <span className="stock-status in-stock">
+                        Envío ${item.shippingValue.toFixed(2)}
+                      </span>
+                    ) : (
+                      <span className="stock-status out-of-stock">
+                        Envío gratuito
+                      </span>
+                    )}
+                  </div>
+                  {item.stock && item.stock < 5 ? (
+                    <div className="stock-warning">¡Quedan pocas unidades!</div>
+                  ) : null}
+                  <div className="item-options">
+                    <QuantityControls
+                      min={1}
+                      max={item.stock ?? 0}
+                      quantity={quantities[item.id!] ?? 1}
+                      onQuantityChange={(qty) => dispatch(updateQuantity({ productId: item.id!, quantity: qty }))}
+                    />
                   </div>
                 </div>
+                <div className="item-actions">
+                  <button className="delete" onClick={() => deleteItem(item.id)}>
+                    <Trash />
+                  </button>
+                </div>
               </div>
-              <div className="item-actions">
-                <button className="delete" onClick={() => deleteItem(item.id)}>
-                  <Trash />
-                </button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p>No tienes productos, continúa comprando.</p>
-        )}
-      </section>
+            ))
+          ) : (
+            <p>No tienes productos, continúa comprando.</p>
+          )}
+        </div>
+      </section >
 
       <section className="summary">
         <h2>Delivery</h2>

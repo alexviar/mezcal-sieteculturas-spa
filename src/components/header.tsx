@@ -17,6 +17,10 @@ export default function Header({ title, subtitle }: HeaderProps) {
   const itemsInCart = useSelector(
     (state: RootState) => state.shoppingCart.total
   );
+  const user = useSelector(
+    (state: RootState) => state.user.user
+  );
+
   return (
     <nav className="header">
       <div className="header-container">
@@ -34,7 +38,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
           </div>}
         </Link>
         <div className="action-container">
-          <Link href="/login" className="action-container-item login">
+          <Link href={user ? "/dashboard/home" : "/login"} className="action-container-item login">
             <User />
             <span>ingresar</span>
           </Link>

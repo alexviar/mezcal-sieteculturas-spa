@@ -1,34 +1,31 @@
-import Loader from "@/components/loader";
-import { PurchaseWithProduct, useDownloadPurchaseMutation } from "@/api/services/purchaseApi";
-import { toast } from "react-toastify";
 import { getErrorMessage } from "@/api/getErrorMessage";
+import { PurchaseWithProduct, useGeneratePurchaseReceiptMutation } from "@/api/services/purchaseApi";
+import Loader from "@/components/loader";
+import { toast } from "react-toastify";
 
 interface ViewPurchaseProps {
   data: PurchaseWithProduct;
 }
 
 export default function ViewPurchase({ data }: ViewPurchaseProps) {
-  const [downloadReceipt, downloadReceiptState] = useDownloadPurchaseMutation()
+  const [downloadReceipt, downloadReceiptState] = useGeneratePurchaseReceiptMutation()
 
   const isDownloading = downloadReceiptState.isLoading
 
   const handleDownloadOrder = async () => {
     try {
-      await downloadReceipt({
-        id: data.id,
-        async onDownloaded(blob: Blob) {
-          const URLObject = window.URL || window.webkitURL;
-          const url = URLObject.createObjectURL(blob);
-          const link = document.createElement('a');
-          link.href = url;
-          link.target = '_blank';
-          link.download = `purchase_order_${data.id}.pdf`;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          window.URL.revokeObjectURL(url);
-        }
-      }).unwrap()
+      const { downloadUrl } = await downloadReceipt(data.id).unwrap()
+
+      const url = downloadUrl;
+      const link = document.createElement('a');
+      link.href = url;
+      if (!(window as { ReactNativeWebView?: unknown }).ReactNativeWebView) {
+        link.target = '_blank';
+      }
+      link.download = `purchase_order_${data.id}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     } catch (error) {
       console.error("Error downloading purchase order:", error);
       toast.error(<>
@@ -46,7 +43,7 @@ export default function ViewPurchase({ data }: ViewPurchaseProps) {
           Fecha de compra: {data.date} <br />
           Valor de compra: ${data.value} MXN
           <br />
-          ¿Producto enviado?: {data.shipped === null ? "No" : "Sí"}
+          ¿Producto enviado?: {!data.shipped ? "No" : "Sí"}
           <br />
           ¿Metodo de pago?: {data.paymentType}
           <br />

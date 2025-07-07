@@ -1,6 +1,5 @@
 import { appApi } from "../appApi";
 import { IndexParams, Paginated } from "../types";
-import { keysToCamel } from "../utils";
 
 export type PurchaseData = {
   id: number
@@ -67,26 +66,11 @@ const purchaseApi = appApi.enhanceEndpoints({
       invalidatesTags: (result) => result !== undefined ? ['Purchases'] : []
     }),
 
-    downloadPurchase: build.mutation({
-      queryFn: async ({ id, onDownloaded }, _, __, baseQuery) => {
-        try {
-          const result = await baseQuery({
-            url: `/purchases/${id}/download`,
-            responseHandler: async (response: any) => {
-              if (response.ok) {
-                onDownloaded(await response.blob())
-                return null
-              }
-              return response.json()
-            },
-          })
-          result.error = keysToCamel(result.error)
-          return result
-        }
-        catch (error) {
-          return { error: error as any }
-        }
-      },
+    generatePurchaseReceipt: build.mutation<{ downloadUrl: string }, number>({
+      query: (id) => ({
+        method: 'GET',
+        url: `/purchases/${id}/download`,
+      }),
     }),
   })
 })
@@ -95,5 +79,5 @@ export const {
   useGetPurchasesQuery,
   useMakePurchaseMutation,
   useUpdatePurchaseMutation,
-  useDownloadPurchaseMutation
+  useGeneratePurchaseReceiptMutation
 } = purchaseApi

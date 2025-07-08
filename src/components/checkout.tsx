@@ -15,7 +15,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Placeholder } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Loader from "./loader";
@@ -29,6 +29,7 @@ function CheckoutComponentInner() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<string>("");
   const [loading, setLoading] = useState(false);
+  const [cardElementReady, setCardElementReady] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -226,7 +227,12 @@ function CheckoutComponentInner() {
                 cursor: 'text'
               }}
             >
-              <CardElement />
+              {!cardElementReady && (
+                <Placeholder as="div" animation="glow" >
+                  <Placeholder xs="12" className="rounded-1" style={{ height: '1.5rem' }} />
+                </Placeholder>
+              )}
+              <CardElement onReady={() => setCardElementReady(true)} />
             </div>
           )}
           <div className="payment-method-container mb-3">

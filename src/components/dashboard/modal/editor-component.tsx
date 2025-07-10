@@ -1,15 +1,13 @@
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import {
-  ClassicEditor,
   Bold,
+  ClassicEditor,
   Essentials,
   Italic,
   Mention,
   Paragraph,
   Undo,
 } from "ckeditor5";
-
-import "ckeditor5/ckeditor5.css";
 
 interface EditorComponentProps {
   value: string;

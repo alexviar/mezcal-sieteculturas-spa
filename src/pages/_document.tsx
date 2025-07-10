@@ -4,11 +4,11 @@ export default function Document() {
   return (
     <Html lang="es">
       <Head />
-      <body style={{
+      <body data-bs-theme="dark" style={{
         backgroundImage: 'url(/background.png)',
-        backgroundSize: 'cover',
+        backgroundSize: 'contain',
         backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
+        backgroundRepeat: 'repeat',
       }}>
         <Main />
         <NextScript />

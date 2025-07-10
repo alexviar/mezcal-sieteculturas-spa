@@ -1,7 +1,7 @@
 import Layout from "@/components/layout";
 import LoginForm from "@/components/login";
-import Head from "next/head";
 import { appName } from "@/configs/app";
+import Head from "next/head";
 
 export default function Login() {
   return (
@@ -17,7 +17,9 @@ export default function Login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <LoginForm />
+        <div className="w-100 flex-grow-1 d-flex align-items-center justify-content-center p-4">
+          <LoginForm />
+        </div>
       </Layout>
     </>
   );

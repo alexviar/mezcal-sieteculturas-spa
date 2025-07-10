@@ -267,7 +267,7 @@ const ItemRow = ({ item, index, onQuantityChange, onRemove }: any) => {
 
       {/* Fila Inferior: Controles */}
       <Row className="align-items-center g-2">
-        <Col xs={7}>
+        <Col xs="auto">
           <QuantityControls
             quantity={item.quantity}
             min={1}
@@ -278,7 +278,7 @@ const ItemRow = ({ item, index, onQuantityChange, onRemove }: any) => {
           />
         </Col>
 
-        <Col xs={5}>
+        <Col>
           <div className="d-flex justify-content-end align-items-center gap-2">
             <div className="text-end">
               <div className="small text-body-secondary">Subtotal</div>

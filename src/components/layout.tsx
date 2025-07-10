@@ -17,7 +17,9 @@ type LayoutProps = PropsWithChildren<{
 export default function Layout({ children, ...props }: LayoutProps) {
   const { open, message } = useNotification();
   return (
-    <>
+    <div className="d-flex flex-column" style={{
+      minHeight: '100dvh'
+    }}>
       <Header title={props.title} subtitle={props.subtitle} hideBrandLogo={props.hideBrandLogo} />
       <main className={`${styles.main} `}>{children}</main>
       <Footer />
@@ -30,6 +32,6 @@ export default function Layout({ children, ...props }: LayoutProps) {
         <WhatsAppColor />
       </Link>
       <Notification message={message} open={open} />
-    </>
+    </div>
   );
 }

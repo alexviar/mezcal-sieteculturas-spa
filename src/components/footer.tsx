@@ -3,7 +3,7 @@ import { appName, companyAddress, companyEmail, companyFacebook, companyInstagra
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className="bg-body-secondary">
       <div className="footer-container">
         <div className="contact-content">
           <ul className="contact-list">

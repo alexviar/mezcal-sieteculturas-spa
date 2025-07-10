@@ -23,13 +23,13 @@ export default function Header({ hideBrandLogo, title, subtitle }: HeaderProps) 
   );
 
   return (
-    <nav className="header">
+    <nav className="header bg-body border-bottom">
       <div className="header-container">
         <Link href="/" className="brand-item">
           {!hideBrandLogo && <Image
             src={Logo}
-            width={60}
-            height={60}
+            width={48}
+            height={48}
             alt={`${appName} logo`}
             priority
           />}

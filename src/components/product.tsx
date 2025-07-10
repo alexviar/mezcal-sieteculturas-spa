@@ -23,18 +23,16 @@ export default function Products() {
   function renderContent() {
     if (getProducts.data?.total == 0) {
       return (
-        <div id="products" className="w-100 px-3 py-4 bg-body">
-          <div className="w-100 p-5 text-center d-flex flex-column align-items-center">
-            <Image
-              src={Logo}
-              alt="No products available"
-              width={150}
-              height={150}
-              className="mb-4"
-            />
-            <p className="fs-5 fw-bold">¡Ups! Parece que no hay productos aquí todavía.</p>
-            <p className="text-muted">Estamos trabajando para traer las mejores selecciones para ti. ¡Vuelve pronto!</p>
-          </div>
+        <div className="w-100 p-5 text-center d-flex flex-column align-items-center">
+          <Image
+            src={Logo}
+            alt="No products available"
+            width={150}
+            height={150}
+            className="mb-4"
+          />
+          <p className="fs-5 fw-bold">¡Ups! Parece que no hay productos aquí todavía.</p>
+          <p className="text-muted">Estamos trabajando para traer las mejores selecciones para ti. ¡Vuelve pronto!</p>
         </div>
       )
     }

@@ -1,7 +1,7 @@
 import { getErrorMessage } from "@/api/getErrorMessage";
 import { useGetCatalogQuery } from "@/api/services/storeApi";
 import { useState } from "react";
-import { Alert } from "react-bootstrap";
+import { Alert, Col, Row } from "react-bootstrap";
 import Loader from "./loader";
 import { PaginationComponent } from "./pagination";
 import { ProductCard } from "./ProductCard";
@@ -19,12 +19,16 @@ export default function Products() {
 
   function renderContent() {
     if (products) {
-      return <div
-        className={`${products.length > 1 ? "products-grid" : "products-list"}`}
-      >
-        {products.map((product) => {
-          return <ProductCard product={product} />
-        })}
+      return <div className="w-100 px-3 py-4">
+        <Row className="g-4 justify-content-center">
+          {products.map((product) => {
+            return (
+              <Col key={product.id} md={6}>
+                <ProductCard product={product} />
+              </Col>
+            )
+          })}
+        </Row>
       </div>
     }
     if (getProducts.isError) {

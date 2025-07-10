@@ -37,17 +37,17 @@ export default function Products() {
       )
     }
     if (products) {
-      return <div id="products" className="w-100 px-3 py-4 bg-body">
+      return (
         <Row className="g-4 justify-content-center">
           {products.map((product) => {
             return (
-              <Col key={product.id} md={6}>
+              <Col key={product.id} xs={6} md={3} lg={4}>
                 <ProductCard product={product} />
               </Col>
             )
           })}
         </Row>
-      </div>
+      )
     }
     if (getProducts.isError) {
       return <Alert variant='danger' dismissible>
@@ -64,7 +64,7 @@ export default function Products() {
         className="w-100 p-5 d-flex align-items-center justify-content-center flex-column"
         style={{
           maxWidth: '28rem',
-          height: '100dvh',
+          minHeight: '100dvh',
           marginTop: -64
         }}
       >
@@ -88,7 +88,10 @@ export default function Products() {
           <FaChevronRight />
         </Button>
       </div>
-      {renderContent()}
+      <div id="products" className="w-100 p-3 bg-body">
+        <h2 className="fs-5 fw-bold">Nuestros productos</h2>
+        {renderContent()}
+      </div>
       {productsPage && <PaginationComponent
         pagination={{
           current_page: productsPage.currentPage,

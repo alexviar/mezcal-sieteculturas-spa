@@ -6,12 +6,14 @@ import { Badge, Button, Ratio } from "react-bootstrap";
 import { FaCartPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { ProductDetail } from "./ProductDetail";
 
 type ProductCardProps = {
   product: Product
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
+  const [showDetail, setShowDetail] = useState(false);
   const [selectedImages, setSelectedImages] = useState<{
     [key: number]: string;
   }>({});
@@ -53,43 +55,50 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   if (product === null) return null
   const stockMessage = getStockMessage(product.stock);
   return (
-    <div className="product-card bg-body-secondary" onClick={() => {
-
-    }}>
-      <div className="product-image">
-        <Ratio>
-          <div>
-            <Image
-              src={selectedImages[product.id] || product.images[0]}
-              alt={product.name}
-              className="main-image object-fit-contain shadow-lg"
-              fill
-              priority
-            />
-            <Badge bg="warning" className="position-absolute shadow" style={{
-              top: '0.5rem',
-              right: '0.5rem',
-            }}>{stockMessage}</Badge>
+    <>
+      <div className="product-card bg-body-secondary" onClick={() => {
+        setShowDetail(true)
+      }}>
+        <div className="product-image">
+          <Ratio>
+            <div>
+              <Image
+                src={selectedImages[product.id] || product.images[0]}
+                alt={product.name}
+                className="main-image object-fit-contain shadow-lg"
+                fill
+                priority
+              />
+              <Badge bg="warning" className="position-absolute shadow" style={{
+                top: '0.5rem',
+                right: '0.5rem',
+              }}>{stockMessage}</Badge>
+            </div>
+          </Ratio>
+        </div>
+        <div className="product-info">
+          <h1 className="product-title text-body-emphasis fs-6">{product.name}</h1>
+          <div className="d-flex align-items-center justify-content-between">
+            <p className="product-price text-accent small mb-0">${product.price.toFixed(2)}</p>
+            <Button
+              size="sm"
+              className="rounded-3"
+              style={{
+                aspectRatio: 1
+              }}
+              disabled={!product.stock || product.stock < 1}
+              onClick={() => handleCart(product)}
+            >
+              <FaCartPlus />
+            </Button>
           </div>
-        </Ratio>
-      </div>
-      <div className="product-info">
-        <h1 className="product-title text-body-emphasis fs-6">{product.name}</h1>
-        <div className="d-flex align-items-center justify-content-between">
-          <p className="product-price text-accent small mb-0">${product.price.toFixed(2)}</p>
-          <Button
-            size="sm"
-            className="rounded-3"
-            style={{
-              aspectRatio: 1
-            }}
-            disabled={!product.stock || product.stock < 1}
-            onClick={() => handleCart(product)}
-          >
-            <FaCartPlus />
-          </Button>
         </div>
       </div>
-    </div>
+      <ProductDetail
+        show={showDetail}
+        onHide={() => setShowDetail(false)}
+        product={product}
+      />
+    </>
   );
 }

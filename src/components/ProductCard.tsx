@@ -2,7 +2,7 @@ import { Product } from "@/models/entities";
 import { addItem } from "@/models/redux/cart/slice";
 import Image from "next/image";
 import { useState } from "react";
-import { Button, Ratio } from "react-bootstrap";
+import { Badge, Button, Ratio } from "react-bootstrap";
 import { FaCartPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -22,7 +22,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     if (stock === 0) {
       return "¡Producto agotado!";
     } else if (stock && stock < 5) {
-      return "¡Quedan pocas unidades!";
+      return "¡Pocas unidades!";
     }
     return "";
   };
@@ -53,7 +53,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   if (product === null) return null
   const stockMessage = getStockMessage(product.stock);
   return (
-    <div className="product-card bg-body-secondary" key={product.id}>
+    <div className="product-card bg-body-secondary" onClick={() => {
+
+    }}>
       <div className="product-image">
         <Ratio>
           <div>
@@ -64,6 +66,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               fill
               priority
             />
+            <Badge bg="warning" className="position-absolute shadow" style={{
+              top: '0.5rem',
+              right: '0.5rem',
+            }}>{stockMessage}</Badge>
           </div>
         </Ratio>
       </div>

@@ -25,7 +25,7 @@ export default function UpdatePurchase({ data }: UpdatePurchaseProps) {
   const [updatePurchase, updatePurchaseState] = useUpdatePurchaseMutation();
   const { setOpen, setReload } = useModal();
 
-  const dataItems = useMemo(() => data.items.filter((item: any) => Boolean(item.productId)), [data])
+  const dataItems = useMemo(() => data.items.filter((item) => Boolean(item.productId)), [data])
   const stockRef = useRef(dataItems.reduce((acc: Record<number, number>, item: any) => {
     acc[item.productId] = item.product.stock + item.quantity;
     return acc;
@@ -137,16 +137,17 @@ export default function UpdatePurchase({ data }: UpdatePurchaseProps) {
                 <ItemRow
                   key={index}
                   item={item}
+                  max={stockRef.current[(item as any).productId]}
                   index={index}
-                  onQuantityChange={(idx: number, qty: number) => {
+                  onQuantityChange={(qty: number) => {
                     if (qty > stockRef.current[(item as any).productId]) {
                       toast.info("Lo sentimos, no hay mas unidades disponibles por ahora.")
                       return
                     }
-                    handleQuantityChange(idx, qty)
+                    handleQuantityChange(index, qty)
                   }}
-                  onRemove={(idx: any) => {
-                    const newItems = watch("items").filter((i) => (i as any).id !== idx.id);
+                  onRemove={() => {
+                    const newItems = watch("items").filter((i) => (i as any).id !== (item as any).id);
                     if (newItems.length == 0) {
                       toast.info("No puedes eliminar este producto. Debe haber al menos uno en la lista.")
                       return
@@ -250,7 +251,17 @@ const ClientInfoField = ({ label, value, md }: { label: string; value: string; m
   </Col>
 );
 
-const ItemRow = ({ item, index, onQuantityChange, onRemove }: any) => {
+const ItemRow = ({ item, max, index, onQuantityChange, onRemove }: {
+  item: {
+    description: string
+    unitPrice: number
+    quantity: number
+  }
+  max: number
+  index: number
+  onQuantityChange: (qty: number) => void
+  onRemove: () => void
+}) => {
 
   return (
     <div className="p-3 rounded border position-relative">
@@ -261,7 +272,7 @@ const ItemRow = ({ item, index, onQuantityChange, onRemove }: any) => {
           <small className="text-body-secondary">Precio unitario: ${item.unitPrice} MXN</small>
         </div>
         <div>
-          <CloseButton onClick={() => onRemove(item)} />
+          <CloseButton onClick={() => onRemove()} />
         </div>
       </div>
 
@@ -271,9 +282,9 @@ const ItemRow = ({ item, index, onQuantityChange, onRemove }: any) => {
           <QuantityControls
             quantity={item.quantity}
             min={1}
-            max={item.product.stock}
+            max={max}
             onQuantityChange={(qty) => {
-              onQuantityChange(index, qty)
+              onQuantityChange(qty)
             }}
           />
         </Col>

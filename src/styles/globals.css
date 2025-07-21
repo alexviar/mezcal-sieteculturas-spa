@@ -173,6 +173,10 @@ footer {
   padding: 0px;
 }
 
+.contact-content .contact-list>* {
+  flex: 1
+}
+
 .contact-content .contact-list .contact-item {
   background-color: transparent;
   display: flex;
@@ -721,6 +725,10 @@ input:checked+.switch:active::before {
 
   .contact-content .contact-list .contact-item {
     flex-direction: row;
+  }
+
+  .contact-content .contact-list .contact-item span {
+    text-align: start;
   }
 
   footer {

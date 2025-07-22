@@ -1,10 +1,11 @@
-# Habilitar reescritura
-RewriteEngine On
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # Reescribir las URLs sin .html para servir el archivo .html correspondiente
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^ %{REQUEST_FILENAME}.html [L]
 
-# Redirigir todas las solicitudes a index.html, excepto para archivos y directorios existentes
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.html [L]
+</IfModule>
 
 # Configurar la caché para archivos estáticos
 <IfModule mod_expires.c>

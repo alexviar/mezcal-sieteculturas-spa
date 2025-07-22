@@ -65,7 +65,7 @@ export default function CreateProduct() {
 
 
           <Form.Group as={Col} xs={12} className="mb-3" controlId="presentation">
-            <Form.Label>Presentación</Form.Label>
+            <Form.Label>Descripción</Form.Label>
             <Form.Control
               {...register("presentation", { required: "Este campo es obligatorio." })}
               isInvalid={!!errors.presentation}
@@ -84,7 +84,7 @@ export default function CreateProduct() {
             rules={{ required: "Este campo es obligatorio." }}
             render={({ field: { onChange, value } }) => (
               <Form.Group as={Col} xs={12} className="mb-3" controlId="description">
-                <Form.Label>Descripción</Form.Label>
+                <Form.Label>Detalles</Form.Label>
                 <EditorComponent value={value} onChange={onChange} />
                 <Form.Text style={{ color: 'var(--bs-form-invalid-color)' }}>{errors.description?.message}</Form.Text>
               </Form.Group>

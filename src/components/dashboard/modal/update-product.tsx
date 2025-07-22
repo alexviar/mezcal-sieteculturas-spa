@@ -91,7 +91,7 @@ export default function UpdateProduct({ product }: UpdateProductsProps) {
           </Form.Group>
 
           <Form.Group as={Col} md={12} controlId="presentation">
-            <Form.Label>Presentación</Form.Label>
+            <Form.Label>Descripción</Form.Label>
             <Form.Control
               type="text"
               {...register("presentation", { required: "Este campo es requerido" })}
@@ -107,7 +107,7 @@ export default function UpdateProduct({ product }: UpdateProductsProps) {
             rules={{ required: "Este campo es requerido" }}
             render={({ field: { onChange, value } }) => (
               <Form.Group as={Col} xs={12} controlId="description">
-                <Form.Label>Descripción</Form.Label>
+                <Form.Label>Detalles</Form.Label>
                 <EditorComponent value={value} onChange={onChange} />
                 <Form.Text style={{ color: 'var(--bs-form-invalid-color)' }}>{errors.description?.message}</Form.Text>
               </Form.Group>

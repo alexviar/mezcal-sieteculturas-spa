@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Alert, Button, Col, Ratio, Row } from "react-bootstrap";
 import { FaChevronRight } from "react-icons/fa";
 import Logo from "../assets/logo.png";
+import { EmptyState } from "./EmptyState";
 import Loader from "./loader";
 import { PaginationComponent } from "./pagination";
 import { ProductCard } from "./ProductCard";
@@ -23,17 +24,12 @@ export default function Products() {
   function renderContent() {
     if (getProducts.data?.total == 0) {
       return (
-        <div className="w-100 p-5 text-center d-flex flex-column align-items-center">
-          <Image
-            src={Logo}
-            alt="No products available"
-            width={150}
-            height={150}
-            className="mb-4"
-          />
-          <p className="fs-5 fw-bold">¡Ups! Parece que no hay productos aquí todavía.</p>
-          <p className="text-muted">Estamos trabajando para traer las mejores selecciones para ti. ¡Vuelve pronto!</p>
-        </div>
+        <EmptyState
+          imageSrc={Logo}
+          imageAlt="Logo"
+          title="¡Ups! Parece que no hay productos aquí todavía."
+          message="Estamos trabajando para traer las mejores selecciones para ti. ¡Vuelve pronto!"
+        />
       )
     }
     if (products) {

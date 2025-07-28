@@ -1,0 +1,46 @@
+name: Deploy React to cPanel via FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        env:
+          NEXT_PUBLIC_COMPANY_NAME: ${{ vars.COMPANY_NAME }}
+          NEXT_PUBLIC_API: ${{ vars.API_URL }}
+          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ vars.STRIPE_PUBLISHABLE_KEY }}
+          NEXT_PUBLIC_ADDRESS: ${{ vars.ADDRESS }}
+          NEXT_PUBLIC_EMAIL: ${{ vars.EMAIL }}
+          NEXT_PUBLIC_WHATSAPP: ${{ vars.WHATSAPP }}
+          NEXT_PUBLIC_FACEBOOK: ${{ vars.FACEBOOK }}
+          NEXT_PUBLIC_INSTAGRAM: ${{ vars.INSTAGRAM }}
+        run: npm run build
+
+      - name: Upload to FTP (or SFTP)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          protocol: ftps
+          port: 21
+          local-dir: ./out/
+          server-dir: ./

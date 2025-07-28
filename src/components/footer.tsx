@@ -55,6 +55,7 @@ export default function Footer() {
           </ul>
 
           <div>© {appName} Todos los derechos reservados</div>
+          <div className="mt-1">Desarrollado por <a href="https://wa.me/5215564828212" rel="noreferrer noopener" target="_blank" className="link-body-emphasis fw-bold">Internow Corp.</a></div>
         </div>
       </div>
     </footer>

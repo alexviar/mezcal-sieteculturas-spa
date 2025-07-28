@@ -87,7 +87,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                 aspectRatio: 1
               }}
               disabled={!product.stock || product.stock < 1}
-              onClick={() => handleCart(product)}
+              onClick={(e) => {
+                e.stopPropagation()
+                handleCart(product)
+              }}
             >
               <FaCartPlus />
             </Button>

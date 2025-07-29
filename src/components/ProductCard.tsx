@@ -65,7 +65,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               <Image
                 src={selectedImages[product.id] || product.images[0]}
                 alt={product.name}
-                className="main-image object-fit-contain shadow-lg"
+                className="main-image object-fit-contain shadow-lg rounded-4"
                 fill
                 priority
               />

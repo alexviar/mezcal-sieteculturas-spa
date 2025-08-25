@@ -3,6 +3,7 @@ import { appName } from "@/configs/app";
 import { RootState } from "@/models/redux/store";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 import { useSelector } from "react-redux";
 import Logo from "../assets/logo.png";
@@ -14,6 +15,7 @@ type HeaderProps = {
 }
 
 export default function Header({ hideBrandLogo, title, subtitle }: HeaderProps) {
+  const pathname = usePathname()
   const user = useSelector(
     (state: RootState) => state.user.user
   );
@@ -35,10 +37,10 @@ export default function Header({ hideBrandLogo, title, subtitle }: HeaderProps) 
           </div>}
         </Link>
         <div className="action-container">
-          <Link href={user ? "/dashboard/home" : "/login"} className="action-container-item login">
+          {pathname !== '/login' && <Link href={user ? "/dashboard/home" : "/login"} className="action-container-item login">
             <User />
             <span>ingresar</span>
-          </Link>
+          </Link>}
         </div>
       </div>
     </nav>

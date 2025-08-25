@@ -4,3 +4,5 @@ export const companyEmail = process.env.NEXT_PUBLIC_EMAIL
 export const companyWhatsapp = process.env.NEXT_PUBLIC_WHATSAPP
 export const companyFacebook = process.env.NEXT_PUBLIC_FACEBOOK
 export const companyInstagram = process.env.NEXT_PUBLIC_INSTAGRAM
+
+export const isWebView = typeof window !== 'undefined' && window.ReactNativeWebView

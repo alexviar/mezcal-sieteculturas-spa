@@ -1,8 +1,5 @@
-import { WhatsAppColor } from "@/assets/icons";
-import { companyWhatsapp } from "@/configs/app";
 import useNotification from "@/models/context";
 import styles from "@/styles/Home.module.css";
-import Link from "next/link";
 import { PropsWithChildren, ReactNode } from "react";
 import { BottomNav } from "./BottomNav";
 import Header from "./header";
@@ -22,14 +19,6 @@ export default function Layout({ children, ...props }: LayoutProps) {
       <Header title={props.title} subtitle={props.subtitle} hideBrandLogo={props.hideBrandLogo} />
       <main className={`${styles.main} `}>{children}</main>
       {!props.hideBottomNav && <BottomNav />}
-      <Link
-        className="wp-button"
-        href={`https://wa.me/${companyWhatsapp}`}
-        rel="noreferrer noopener"
-        target="_blank"
-      >
-        <WhatsAppColor />
-      </Link>
       <Notification message={message} open={open} />
     </div>
   );

@@ -1,10 +1,9 @@
-import { Cart, User } from "@/assets/icons";
+import { User } from "@/assets/icons";
 import { appName } from "@/configs/app";
 import { RootState } from "@/models/redux/store";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
-import { Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Logo from "../assets/logo.png";
 
@@ -15,9 +14,6 @@ type HeaderProps = {
 }
 
 export default function Header({ hideBrandLogo, title, subtitle }: HeaderProps) {
-  const itemsInCart = useSelector(
-    (state: RootState) => state.shoppingCart.total
-  );
   const user = useSelector(
     (state: RootState) => state.user.user
   );
@@ -42,10 +38,6 @@ export default function Header({ hideBrandLogo, title, subtitle }: HeaderProps) 
           <Link href={user ? "/dashboard/home" : "/login"} className="action-container-item login">
             <User />
             <span>ingresar</span>
-          </Link>
-          <Link href="/cart" className="action-container-item cart-button">
-            <Cart />
-            {!!itemsInCart && <Badge bg="primary" >{itemsInCart}</Badge>}
           </Link>
         </div>
       </div>

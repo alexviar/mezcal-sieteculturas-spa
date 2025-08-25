@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "@/utils/nativeBridge";
 
+import ErrorBoundary from "@/components/ErrorBoundary";
 import { ModalProvider } from "@/models/context/modalContext";
 import { NotificationProvider } from "@/models/context/notificationContext";
 import Providers from "@/models/redux/provider";
@@ -28,7 +29,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     <Providers>
       <NotificationProvider>
         <ModalProvider>
-          {getLayout(<Component {...pageProps} />)}
+          <ErrorBoundary>
+            {getLayout(<Component {...pageProps} />)}
+          </ErrorBoundary>
           <ToastContainer />
         </ModalProvider>
       </NotificationProvider>

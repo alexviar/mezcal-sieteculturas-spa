@@ -1,13 +1,17 @@
 import "@/styles/globals.css";
+
 import "@/styles/app.scss";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
-import type { AppProps } from "next/app";
-import Providers from "@/models/redux/provider";
-import { NotificationProvider } from "@/models/context/notificationContext";
+
+import "@/utils/nativeBridge";
+
 import { ModalProvider } from "@/models/context/modalContext";
+import { NotificationProvider } from "@/models/context/notificationContext";
+import Providers from "@/models/redux/provider";
 import { NextPage } from "next";
+import type { AppProps } from "next/app";
 import { ReactElement, ReactNode } from "react";
+import { ToastContainer } from "react-toastify";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode

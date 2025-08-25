@@ -1,7 +1,7 @@
 import Cart from "@/components/cart";
 import Layout from "@/components/layout";
-import Head from "next/head";
 import { appName } from "@/configs/app";
+import Head from "next/head";
 
 export default function CartView() {
   return (
@@ -20,7 +20,7 @@ export default function CartView() {
         <link rel="icon" href="/favicon.ico" />
         <meta name="robots" content="noindex" />
       </Head>
-      <Layout>
+      <Layout title={appName} hideBrandLogo>
         <Cart />
       </Layout>
     </>

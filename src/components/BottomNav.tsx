@@ -35,7 +35,7 @@ export const BottomNav = () => {
                 passHref
                 className={`text-decoration-none rounded transition-colors ${isActive
                   ? 'link-primary'
-                  : 'link-dark'
+                  : 'link-body-emphasis'
                   }`}
                 style={isActive ? {
                   backgroundColor: '#fdf2f4'

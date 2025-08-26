@@ -18,7 +18,7 @@ export default function Layout({ children, ...props }: LayoutProps) {
   const { open, message } = useNotification();
   return (
     <div className="d-flex flex-column" style={{ minHeight: '100dvh', paddingBottom: props.hideBottomNav ? '' : '5rem' }}>
-      <Header title={props.title} subtitle={props.subtitle} hideBrandLogo={props.hideBrandLogo} showBackButton={props.showBackButton} />
+      <Header title={props.title} subtitle={props.subtitle} hideBrandLogo={props.hideBrandLogo} showBackButton={props.showBackButton} backTo={props.backTo} />
       <main className={`${styles.main} `}>{children}</main>
       {!props.hideBottomNav && <BottomNav />}
       <Notification message={message} open={open} />

@@ -16,8 +16,8 @@ export default function Login() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout>
-        <div className="w-100 flex-grow-1 d-flex align-items-center justify-content-center p-4">
+      <Layout title="Volver a la tienda" hideBrandLogo hideBottomNav showBackButton backTo="/">
+        <div className="flex-grow-1 d-flex align-items-center justify-content-center p-3">
           <LoginForm />
         </div>
       </Layout>

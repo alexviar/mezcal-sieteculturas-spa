@@ -20,7 +20,7 @@ export default function About() {
         <Container className="p-3">
           {/* Company Info */}
           <Card className="mb-4">
-            <Card.Header className="bg-white border-0 pt-3 pb-0">
+            <Card.Header className="bg-transparent border-0 pt-3 pb-0">
               <Card.Title className="d-flex align-items-center gap-2 mb-0">
                 <Image
                   src={logo}
@@ -41,7 +41,7 @@ export default function About() {
 
           {/* Contact Information */}
           <Card className="mb-4">
-            <Card.Header className="bg-white border-0 pt-3 pb-0">
+            <Card.Header className="bg-transparent border-0 pt-3 pb-0">
               <Card.Title className="mb-0">Información de contacto</Card.Title>
             </Card.Header>
             <Card.Body>
@@ -73,7 +73,7 @@ export default function About() {
 
           {/* Social Media */}
           <Card className="mb-4">
-            <Card.Header className="bg-white border-0 pt-3 pb-0">
+            <Card.Header className="bg-transparent border-0 pt-3 pb-0">
               <Card.Title className="mb-0">Síguenos en redes sociales</Card.Title>
             </Card.Header>
             <Card.Body>
@@ -108,7 +108,7 @@ export default function About() {
 
           {/* Quick Contact */}
           <Card>
-            <Card.Header className="bg-white border-0 pt-3 pb-0">
+            <Card.Header className="bg-transparent border-0 pt-3 pb-0">
               <Card.Title className="mb-0">¿Necesitas ayuda?</Card.Title>
             </Card.Header>
             <Card.Body>

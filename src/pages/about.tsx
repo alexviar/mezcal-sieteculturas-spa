@@ -46,7 +46,7 @@ export default function About() {
             </Card.Header>
             <Card.Body>
               <div className="d-flex align-items-start gap-3 mb-3">
-                <LuMapPin size={20} className="mt-1 text-primary flex-shrink-0" />
+                <LuMapPin size={20} className="mt-1 text-accent flex-shrink-0" />
                 <div>
                   <p className="fw-medium mb-1">Dirección</p>
                   <p className="text-body-secondary mb-0 text-wrap">{companyAddress}</p>
@@ -54,7 +54,7 @@ export default function About() {
               </div>
 
               <div className="d-flex align-items-start gap-3 mb-3">
-                <LuPhone size={20} className="mt-1 text-primary flex-shrink-0" />
+                <LuPhone size={20} className="mt-1 text-accent flex-shrink-0" />
                 <div>
                   <p className="fw-medium mb-1">Teléfono</p>
                   <p className="text-muted mb-0">{companyWhatsapp}</p>
@@ -62,7 +62,7 @@ export default function About() {
               </div>
 
               <div className="d-flex align-items-start gap-3 mb-3">
-                <LuMail size={20} className="mt-1 text-primary flex-shrink-0" />
+                <LuMail size={20} className="mt-1 text-accent flex-shrink-0" />
                 <div>
                   <p className="fw-medium mb-1">Email</p>
                   <p className="text-muted mb-0">{companyEmail}</p>

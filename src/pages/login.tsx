@@ -17,7 +17,7 @@ export default function Login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout title="Volver a la tienda" hideBrandLogo hideBottomNav showBackButton backTo="/">
-        <div className="flex-grow-1 d-flex align-items-center justify-content-center p-3">
+        <div className="w-100 flex-grow-1 d-flex align-items-center justify-content-center p-3">
           <LoginForm />
         </div>
       </Layout>

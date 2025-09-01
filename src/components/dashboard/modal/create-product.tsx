@@ -125,7 +125,7 @@ export default function CreateProduct() {
 
           <Form.Group as={Col} md={6} className="mb-3" controlId="images">
             <Form.Label htmlFor="images">Imágenes</Form.Label>
-            <Form.Control type="file" multiple {...register("images", { required: "Este campo es obligatorio." })}
+            <Form.Control type="file" accept="image/png,image/jpeg" multiple {...register("images", { required: "Este campo es obligatorio." })}
               className={classNames(!!errors.images && "invalid")}
             />
             <Form.Control.Feedback type="invalid">{errors.images?.message}</Form.Control.Feedback>

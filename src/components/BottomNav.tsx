@@ -20,7 +20,7 @@ export const BottomNav = () => {
   return (
     <Navbar
       fixed="bottom"
-      className="bg-white border-top border-secondary"
+      className="bg-body border-top border-secondary"
       style={{ zIndex: 1050 }}
     >
       <Container fluid className="px-0">
@@ -34,11 +34,11 @@ export const BottomNav = () => {
                 href={path}
                 passHref
                 className={`text-decoration-none rounded transition-colors ${isActive
-                  ? 'link-primary'
+                  ? 'link-accent'
                   : 'link-body-emphasis'
                   }`}
                 style={isActive ? {
-                  backgroundColor: '#fdf2f4'
+                  backgroundColor: '#222936'
                 } : {}}
               >
                 <div
@@ -52,8 +52,8 @@ export const BottomNav = () => {
                     <Icon size={20} />
                     {path === '/cart' && itemsInCart > 0 && (
                       <Badge
-                        bg="secondary"
-                        className="position-absolute top-0 start-100 translate-middle"
+                        bg="accent"
+                        className="text-dark position-absolute top-0 start-100 translate-middle"
                         style={{ fontSize: '0.6rem' }}
                       >
                         {itemsInCart}

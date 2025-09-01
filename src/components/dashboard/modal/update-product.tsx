@@ -154,6 +154,7 @@ export default function UpdateProduct({ product }: UpdateProductsProps) {
             /> */}
             <Form.Control
               type="file"
+              accept="image/png,image/jpeg"
               {...register("images")}
               multiple
               isInvalid={!!errors.images}

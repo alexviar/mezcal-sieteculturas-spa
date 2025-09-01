@@ -25,7 +25,7 @@ export default function Header({ hideBrandLogo, showBackButton = false, backTo, 
   );
 
   return (
-    <nav className="header">
+    <nav className="header bg-body border-bottom">
       <div className="header-container">
         <div className="d-flex align-items-center gap-2">
           {showBackButton && (
@@ -50,7 +50,7 @@ export default function Header({ hideBrandLogo, showBackButton = false, backTo, 
             )}
             {title && (
               <div>
-                <h1 className="mb-0">{title}</h1>
+                <h1 className="mb-0 text-accent">{title}</h1>
                 {subtitle && <p className="mb-0 small">{subtitle}</p>}
               </div>
             )}

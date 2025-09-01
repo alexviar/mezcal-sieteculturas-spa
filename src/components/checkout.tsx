@@ -24,6 +24,39 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ""
 );
 
+const darkTheme = {
+  base: {
+    color: '#ffffff',
+    fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+    fontSmoothing: 'antialiased',
+    fontSize: '16px',
+    fontWeight: '400',
+    lineHeight: '24px',
+    letterSpacing: '0.025em',
+    '::placeholder': {
+      color: '#888888',
+    },
+    iconColor: '#888888',
+  },
+  invalid: {
+    color: '#ef4444',
+    iconColor: '#ef4444',
+  },
+  complete: {
+    color: '#10b981',
+    iconColor: '#10b981',
+  },
+  focus: {
+    color: '#ffffff',
+    iconColor: '#6366f1',
+  },
+};
+
+// Configuración del CardElement con tema oscuro
+const cardElementOptions = {
+  style: darkTheme,
+};
+
 function CheckoutComponentInner() {
   const [purchase, purchaseState] = useMakePurchaseMutation();
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
@@ -232,7 +265,7 @@ function CheckoutComponentInner() {
                   <Placeholder xs="12" className="rounded-1" style={{ height: '1.5rem' }} />
                 </Placeholder>
               )}
-              <CardElement onReady={() => setCardElementReady(true)} />
+              <CardElement options={cardElementOptions} onReady={() => setCardElementReady(true)} />
             </div>
           )}
           <div className="payment-method-container mb-3">

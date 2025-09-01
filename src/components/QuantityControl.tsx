@@ -18,7 +18,7 @@ export const QuantityControls = ({ quantity, min, max, onQuantityChange }: Quant
   return (
     <InputGroup className="border rounded-pill overflow-hidden" style={{ width: 'auto' }}>
       <Button
-        variant="outline-primary"
+        variant="outline-accent"
         className="border-0"
         disabled={quantity <= min}
         onClick={() => onQuantityChange(Math.max(min, quantity - 1))}
@@ -36,7 +36,7 @@ export const QuantityControls = ({ quantity, min, max, onQuantityChange }: Quant
         style={{ maxWidth: '8rem' }}
       />
       <Button
-        variant="outline-primary"
+        variant="outline-accent"
         className="border-0"
         disabled={quantity >= max}
         onClick={() => onQuantityChange(Math.min(max, quantity + 1))}

@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 
 import "@/styles/app.scss";
+import "@/styles/ckeditor.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import "@/utils/nativeBridge";

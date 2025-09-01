@@ -99,9 +99,8 @@ export default function DasboardLayout({ children }: LayoutProps) {
               <div className="title">{pageTitle(currentPath)} </div>
               <div className="user-options">
                 <Button
-                  variant="outline-primary rounded-circle p-2"
+                  variant="outline-accent rounded-circle p-2"
                   onClick={handleLogOut}
-                  style={{ background: "none" }}
                   className="icon user-img"
                 >
                   <FaSignOutAlt />

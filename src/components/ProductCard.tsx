@@ -2,14 +2,18 @@ import { Product } from "@/models/entities";
 import { addItem } from "@/models/redux/cart/slice";
 import Image from "next/image";
 import { useState } from "react";
+import { Badge, Button, Ratio } from "react-bootstrap";
+import { FaCartPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { ProductDetail } from "./ProductDetail";
 
 type ProductCardProps = {
   product: Product
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
+  const [showDetail, setShowDetail] = useState(false);
   const [selectedImages, setSelectedImages] = useState<{
     [key: number]: string;
   }>({});
@@ -20,7 +24,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     if (stock === 0) {
       return "¡Producto agotado!";
     } else if (stock && stock < 5) {
-      return "¡Quedan pocas unidades!";
+      return "¡Pocas unidades!";
     }
     return "";
   };
@@ -51,56 +55,53 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   if (product === null) return null
   const stockMessage = getStockMessage(product.stock);
   return (
-    <div className="product-card" key={product.id}>
-      <div className="product-info">
-        <h1 className="product-title">{product.name}</h1>
-        <p className="product-description">
-          Presentación: {product.presentation} <br />
-          Notas: {product.notes} <br />
-        </p>
-        <div
-          style={{ marginBottom: '0.5rem' }}
-          dangerouslySetInnerHTML={{ __html: product.description }}
-        />
-        {stockMessage && (
-          <span className="stock-warning">{stockMessage}</span>
-        )}
-        <p className="product-price">${product.price.toFixed(2)}</p>
-        <button
-          className="buy-button"
-          disabled={!product.stock || product.stock < 1}
-          onClick={() => handleCart(product)}
-        >
-          Comprar
-        </button>
-      </div>
-      <div className="product-image">
-        <div className="product-image-container">
-          <Image
-            src={selectedImages[product.id] || product.images[0]}
-            alt={product.name}
-            className="main-image"
-            fill
-            priority
-          />
-        </div>
-        <div className="product-thumbnails">
-          {product.images.length > 1 && <div className="thumbnail-images">
-            {product.images.map((image, idx) => (
+    <>
+      <div className="product-card bg-body-secondary" onClick={() => {
+        setShowDetail(true)
+      }}>
+        <div className="product-image">
+          <Ratio>
+            <div>
               <Image
-                key={idx}
-                src={image}
-                alt={`Thumbnail ${idx + 1}`}
-                onClick={() => handleThumbnailClick(product.id, image)}
-                className="thumbnail"
-                width={40}
-                height={40}
-                loading="lazy"
+                src={selectedImages[product.id] || product.images[0]}
+                alt={product.name}
+                className="main-image object-fit-contain shadow-lg rounded-4"
+                fill
+                priority
               />
-            ))}
-          </div>}
+              <Badge bg="warning" className="position-absolute shadow" style={{
+                top: '0.5rem',
+                right: '0.5rem',
+              }}>{stockMessage}</Badge>
+            </div>
+          </Ratio>
+        </div>
+        <div className="product-info">
+          <h1 className="product-title text-body-emphasis fs-6">{product.name}</h1>
+          <div className="d-flex align-items-center justify-content-between">
+            <p className="product-price text-accent small mb-0">${product.price.toFixed(2)}</p>
+            <Button
+              size="sm"
+              className="rounded-3"
+              style={{
+                aspectRatio: 1
+              }}
+              disabled={!product.stock || product.stock < 1}
+              onClick={(e) => {
+                e.stopPropagation()
+                handleCart(product)
+              }}
+            >
+              <FaCartPlus />
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+      <ProductDetail
+        show={showDetail}
+        onHide={() => setShowDetail(false)}
+        product={product}
+      />
+    </>
   );
 }

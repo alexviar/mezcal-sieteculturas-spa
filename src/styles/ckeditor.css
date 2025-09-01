@@ -1,0 +1,11 @@
+@import "ckeditor5/ckeditor5.css";
+
+[data-bs-theme=dark] {
+  /* color-scheme: dark; */
+  --ck-color-base-background: none;
+  --ck-color-toolbar-background: none;
+  --ck-color-text: none;
+  --ck-color-base-border: var(--bs-border-color);
+  --ck-border-radius: var(--bs-border-radius);
+  --ck-color-button-default-hover-background: var(--bs-secondary-bg);
+}

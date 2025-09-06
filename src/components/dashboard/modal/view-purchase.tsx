@@ -47,6 +47,8 @@ export default function ViewPurchase({ data }: ViewPurchaseProps) {
           <br />
           ¿Metodo de pago?: {data.paymentType}
           <br />
+          ¿Pago realizado?: {data.paid ? "Sí" : "No"}
+          <br />
           Fecha de envío:{" "}
           {data.shippingDate === null
             ? "No se ha enviado"
@@ -62,13 +64,13 @@ export default function ViewPurchase({ data }: ViewPurchaseProps) {
           Ciudad del cliente: {data.customerCity} <br />
           Estado del cliente: {data.customerState} <br />
         </p>
-        <button
+        {data.paid && <button
           className="download-btn"
           onClick={handleDownloadOrder}
           disabled={isDownloading} // Deshabilitar botón si está descargando
         >
           {isDownloading ? "Descargando..." : "Descargar orden"}
-        </button>
+        </button>}
         {isDownloading && (
           <div
             style={{

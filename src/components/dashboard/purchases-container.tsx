@@ -70,6 +70,7 @@ export default function PurchasesContainer() {
               <th>Cliente</th>
               <th>Valor de compra</th>
               <th>¿Enviada?</th>
+              <th>¿Pagada?</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -79,6 +80,7 @@ export default function PurchasesContainer() {
                 <td>{purchase.customerName}</td>
                 <td>${purchase.value.toFixed(2)}</td>
                 <td>{!purchase.shipped ? "No" : "Sí"}</td>
+                <td>{purchase.paid ? "Sí" : "No"}</td>
                 <td className="action-cell">
                   <button onClick={() => handleView(purchase)}>
                     <Eye />

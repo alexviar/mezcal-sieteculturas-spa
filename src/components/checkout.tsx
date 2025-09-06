@@ -86,9 +86,9 @@ function CheckoutComponentInner() {
           throw new Error(getErrorMessage(e))
         });
 
-        router.push("/checkout/thank-you");
         dispatch(cleanCart());
         dispatch(resetForm());
+        router.push("/checkout/thank-you");
       } else if (selectedPaymentMethod === "stripe") {
         if (!stripe || !elements) {
           throw new Error("Stripe no está cargado correctamente");

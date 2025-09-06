@@ -1,5 +1,6 @@
 "use client";
 import { Trash } from "@/assets/icons";
+import { useUpdateCartItems } from "@/hooks/useUpdateCartItems";
 import { Product } from "@/models/entities";
 import {
   removeItem,
@@ -13,6 +14,7 @@ import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { QuantityControls } from "./QuantityControl";
+import Loader from "./loader";
 
 export default function Cart() {
   const quantities = useSelector(
@@ -57,6 +59,8 @@ export default function Cart() {
 
   const router = useRouter();
 
+  const cartUpdated = useUpdateCartItems();
+
   useEffect(() => {
     router.prefetch("/checkout/payment-data")
   }, [])
@@ -64,6 +68,8 @@ export default function Cart() {
   const handleNavigate = () => {
     if (total > 0) router.push("/checkout/payment-data");
   };
+
+  if (!cartUpdated) return <Loader />;
 
   return (
     <div className="cart-container">

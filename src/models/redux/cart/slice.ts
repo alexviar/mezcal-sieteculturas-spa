@@ -76,6 +76,22 @@ const cartSlice = createSlice({
       }
     },
 
+    updateItem: (state, action: PayloadAction<Product>) => {
+      const index = state.items.findIndex((item) => item.id === action.payload.id);
+      if (index !== -1) {
+        state.items[index] = action.payload;
+
+        const subtotal = state.items.reduce(
+          (sum, item) => sum + item.price * (state.quantities[item.id] || 1),
+          0
+        );
+        state.subtotal = subtotal;
+        /* state.tax = subtotal * 0.19; */
+        state.deliverySum = sumShippingValues(state.items);
+        state.grandTotal = subtotal + /* state.tax + */ state.deliverySum;
+      }
+    },
+
     removeItem: (state, action: PayloadAction<number>) => {
       const index = state.items.findIndex((item) => item.id === action.payload);
       if (index !== -1) {
@@ -165,6 +181,7 @@ const cartSlice = createSlice({
 
 export const {
   addItem,
+  updateItem,
   removeItem,
   incrementQuantity,
   decrementQuantity,

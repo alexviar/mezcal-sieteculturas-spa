@@ -27,6 +27,13 @@ const productApi = appApi.enhanceEndpoints({
       }
     }),
 
+    getProduct: build.query<Product, number>({
+      query: (id) => ({
+        url: `/products/${id}`,
+      }),
+      providesTags: (result) => result !== undefined ? [{ type: 'Products', id: `${result.id}` }] : []
+    }),
+
     createProduct: build.mutation<Product, Omit<Product, 'id'>>({
       query: (data) => {
         const formData = new FormData()
@@ -80,6 +87,7 @@ const productApi = appApi.enhanceEndpoints({
 
 export const {
   useGetProductsQuery,
+  useLazyGetProductQuery,
 
   useCreateProductMutation,
   useUpdateProductMutation

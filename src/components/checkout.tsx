@@ -97,7 +97,7 @@ function CheckoutComponentInner() {
 
     setLoading(true);
 
-    const buildRequestBody: Omit<PurchaseData, 'id' | 'date' | 'shippingFee' | 'shippingDate' | 'shipped'> = {
+    const buildRequestBody: Omit<PurchaseData, 'id' | 'date' | 'shippingFee' | 'shippingDate' | 'shipped' | 'paid'> = {
       items: itemsInCart.map((item) => ({
         productId: item.id,
         quantity: quantities[item.id] || 1,
@@ -150,12 +150,26 @@ function CheckoutComponentInner() {
           console.error("Error al crear el PaymentMethod:", pmError);
           throw Error("Error al crear el PaymentMethod: " + pmError.message);
         }
-        await purchase({
+
+        const { status, clientSecret } = await purchase({
           ...buildRequestBody,
           paymentMethod: paymentMethod.id,
         }).unwrap().catch(e => {
           throw new Error(getErrorMessage(e))
         });
+
+        if (status === "requires_action") {
+          const {
+            error,
+            paymentIntent
+          } = await stripe.handleNextAction({
+            clientSecret: clientSecret!
+          });
+
+          if (error) {
+            throw new Error("Error al confirmar el pago: " + error.message);
+          }
+        }
 
         router.push("/checkout/thank-you");
         dispatch(cleanCart());

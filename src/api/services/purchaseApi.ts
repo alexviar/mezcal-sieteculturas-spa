@@ -8,6 +8,7 @@ export type PurchaseData = {
   shippingFee: number
   shippingDate: string | null
   shipped: boolean
+  paid: boolean
   customerName: string
   customerMail: string
   customerAddress: string
@@ -24,6 +25,7 @@ export type PurchaseData = {
 }
 
 type PurchaseResponse = {
+  status: string
   clientSecret?: string
 }
 
@@ -49,7 +51,7 @@ const purchaseApi = appApi.enhanceEndpoints({
       providesTags: ['Purchases']
     }),
 
-    makePurchase: build.mutation<PurchaseResponse, Omit<PurchaseData, 'id' | 'date' | 'shippingFee' | 'shippingDate' | 'shipped'>>({
+    makePurchase: build.mutation<PurchaseResponse, Omit<PurchaseData, 'id' | 'date' | 'shippingFee' | 'shippingDate' | 'shipped' | 'paid'>>({
       query: (body) => ({
         method: 'POST',
         url: '/purchases',

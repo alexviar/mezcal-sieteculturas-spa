@@ -121,7 +121,7 @@ function CheckoutComponentInner() {
 
         dispatch(cleanCart());
         dispatch(resetForm());
-        router.push("/checkout/thank-you");
+        router.push("/checkout/thank-you?show-clabe=1");
       } else if (selectedPaymentMethod === "stripe") {
         if (!stripe || !elements) {
           throw new Error("Stripe no está cargado correctamente");

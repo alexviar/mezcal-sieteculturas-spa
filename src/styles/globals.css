@@ -712,6 +712,98 @@ input:checked+.switch:active::before {
   margin-bottom: 2rem;
 }
 
+.bank-transfer-card {
+  margin-top: 2.5rem;
+  padding: 2rem 2.5rem;
+  max-width: 620px;
+  background: var(--bs-secondary-bg);
+  border: 1px solid rgba(var(--bs-primary-rgb), 0.1);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(58, 50, 37, 0.08);
+  text-align: left;
+}
+
+.bank-transfer-card h2 {
+  margin-bottom: 1rem;
+  color: rgb(var(--bs-accent-rgb));
+}
+
+.bank-transfer-card p {
+  color: rgb(var(--bs-gray-700));
+}
+
+.clabe-highlight {
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background: rgba(var(--bs-accent-rgb), 0.1);
+  border-radius: 14px;
+}
+
+.clabe-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(var(--bs-accent-rgb));
+}
+
+.clabe-copy-button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+  font-weight: 600;
+  background: rgb(var(--bs-primary-rgb));
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.clabe-copy-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.clabe-copy-button:active {
+  transform: scale(0.97);
+}
+
+.clabe-copy-feedback {
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(var(--bs-accent-rgb));
+}
+
+.clabe-steps {
+  color: rgb(var(--bs-gray-700));
+}
+
+.clabe-steps li {
+  line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+  .bank-transfer-card {
+    padding: 1.5rem;
+  }
+
+  .clabe-highlight {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .clabe-copy-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 @media (max-width: 767px) {
 
   .product-card-modal {

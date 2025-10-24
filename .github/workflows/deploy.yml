@@ -32,6 +32,9 @@ jobs:
           NEXT_PUBLIC_WHATSAPP: ${{ vars.WHATSAPP }}
           NEXT_PUBLIC_FACEBOOK: ${{ vars.FACEBOOK }}
           NEXT_PUBLIC_INSTAGRAM: ${{ vars.INSTAGRAM }}
+          NEXT_PUBLIC_BANK_ACCOUNT_HOLDER_NAME: ${{ vars.BANK_ACCOUNT_HOLDER_NAME }}
+          NEXT_PUBLIC_BANK_ACCOUNT_CLABE: ${{ vars.BANK_ACCOUNT_CLABE }}
+          NEXT_PUBLIC_BANK_NAME: ${{ vars.BANK_NAME }}
         run: npm run build
 
       - name: Upload to FTP (or SFTP)
